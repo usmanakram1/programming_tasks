@@ -1,0 +1,103 @@
+#include<iostream>
+#include<string>
+using namespace std;
+class account {
+	string title;
+	double balance;
+	double addmoney;
+	double withdrawmoney;
+	double money;
+public:
+	account()
+	{
+		balance = 0;
+	}
+	account(double b)
+	{
+		balance = b;
+	}
+	void add_money();
+	void withdraw_money();
+	void check_balance();
+	void transfer_money();
+	
+
+};
+
+void account::add_money()
+{
+	cout << "current balance=" << balance << endl;
+	cout << "enter the money that you want to add" << endl;
+	cin >> money;
+	addmoney= balance+money;
+	cout << "after add money balance=" << addmoney << endl;
+}
+void account::withdraw_money()
+{
+	cout << "current balance=" << balance << endl;
+	cout << "enter the money that you want to withdraw" << endl;
+	cin >> money;
+	if (money > balance)
+	{
+		cout << "you try to draw more money than current balance so pay 5$ panality " << endl;
+		balance -=5;
+		cout << "after the panality your balance=" << balance << endl;
+	}
+	else
+	{
+		withdrawmoney = balance - money;
+		cout << "after withdraw money balance=" << withdrawmoney << endl;
+	}
+}
+void account::check_balance()
+{
+	cout << "what is current balance" << endl;
+	cout << "current balance=" << balance << endl;
+}
+void account ::transfer_money()
+{
+	cout << "current balance=" << balance << endl;
+	cout << "enter the money you want to transfer" << endl;
+	cin >> money;
+	if (money < balance)
+	{
+		withdrawmoney = balance - money;
+		cout << "after transfer money balance=" << withdrawmoney << endl;
+	}
+	else
+	{
+		cout << "insufficent amount so don't transfer other account" << endl;
+	}
+}
+void main()
+{
+	int bal;
+	cout << "enter balance that  you set" << endl;
+	cin >> bal;
+	account obj(bal);
+	int choice;
+	cout << "which you want to perform the operation" << endl;
+	cout << "'0' for add_money()" << endl;
+	cout << "'1' for withdraw_money()" << endl;
+	cout << "'2' for check_balance()" << endl;
+	cout << "'3' for transfer_money" << endl;
+	cout << "enter choice" << endl;
+	cin >> choice;
+	switch (choice)
+	{
+	case 0:
+		obj.add_money();
+		break;
+	case 1:
+		obj.withdraw_money();
+		break;
+	case 2:
+		obj.check_balance();
+		break;
+	case 3:
+		obj.transfer_money();
+		break;
+	default:
+		cout << "invalid input please follow the instruction" << endl;
+	}
+}
